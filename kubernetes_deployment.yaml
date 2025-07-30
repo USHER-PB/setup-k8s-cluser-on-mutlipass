@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubernetes-cluster-setup-presentation
+  labels:
+    app: kubernetes-cluster-setup-presentation # FIXED: Added space after 'app:'
+spec:
+  replicas: 1 # Desired number of Pod instances
+  selector:
+    matchLabels:
+      app: kubernetes-cluster-setup-presentation
+  template:
+    metadata:
+      labels:
+        app: kubernetes-cluster-setup-presentation # Pods created by this Deployment will have this label
+    spec:
+      containers:
+      - name: presentation
+        image: ghcr.io/chojuninengu/kubernetes-cluster-setup:latest # FIXED: Added space after 'image:'
+        ports:
+        - containerPort: 8000 # FIXED: Changed to 8000 to match application's actual listening port
