@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubernetes-cluster-setup-presentation-service # FIXED: Added space after 'name:'
+spec:
+  selector:
+    app: kubernetes-cluster-setup-presentation # FIXED: Service selector MUST match Deployment's Pod label
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 80       # Port the Service listens on (internal to cluster)
+      targetPort: 8000 # FIXED: Changed to 8000 to match application's actual listening port
+      nodePort: 30090 # NodePort set to 30088
